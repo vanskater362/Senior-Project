@@ -1,4 +1,4 @@
 ---
 deployment:
  tasks:
- - export DEPLOYPATH=/home/devaxissoftware/tony.devaxissoftware.com
+ - export DEPLOYPATH=/home/devaxissoftware/tony.devaxissoftware.com/senior-project
