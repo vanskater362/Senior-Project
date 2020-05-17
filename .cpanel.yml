@@ -1,0 +1,4 @@
+---
+deployment:
+ tasks:
+ - export DEPLOYPATH=/home/devaxissoftware/tony.devaxissoftware.com
