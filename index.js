@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const mysql = require('mysql');
+//const mysql = require('mysql');
 const PORT = process.env.PORT || 5000
 
 express()
@@ -10,12 +10,10 @@ express()
   .get('/', function (req, res) {
     res.send('Hello World! Test string');
 
-    var con = mysql.createConnection({
+    /*var con = mysql.createConnection({
     host: "localhost",
     user: "admin",
-    password: "Xtend321"
-
-});
+    password: "Xtend321"});*/
   })
   .get('/index', (req, res) => res.render('pages/index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
