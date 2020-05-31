@@ -3,9 +3,10 @@ const path = require('path')
 const mysql = require('mysql');
 const PORT = process.env.PORT || 5000
 var con = mysql.createConnection({
-    host: "localhost",
+    host: "localhost:3306",
     user: "admin",
-    password: "Xtend321"});
+    password: "Xtend321",
+  databaes: "devaxissoftware_Organizer"});
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
