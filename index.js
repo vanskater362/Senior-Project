@@ -1,7 +1,11 @@
 const express = require('express')
 const path = require('path')
-//const mysql = require('mysql');
+const mysql = require('mysql');
 const PORT = process.env.PORT || 5000
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "admin",
+    password: "Xtend321"});
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -9,11 +13,17 @@ express()
   .set('view engine', 'ejs')
   .get('/', function (req, res) {
     res.send('Hello World! Test string');
-
-    /*var con = mysql.createConnection({
-    host: "localhost",
-    user: "admin",
-    password: "Xtend321"});*/
+  })
+  .get('/db', function (req, res) {
+    con.connect(function(err){
+      console.log("Connected!");
+      con.query("SELECT * FROM `USERS`", function(err, result) {
+        if(err) throw err;
+        console.log("Result: " + result);
+        res.send("Result: " + result);
+      });
+    });
+    
   })
   .get('/index', (req, res) => res.render('pages/index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
