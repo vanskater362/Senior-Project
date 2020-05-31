@@ -19,7 +19,7 @@ express()
     con.connect(function(err){
       console.log("Connected!");
       con.query("SELECT * FROM `USERS`", function(err, result) {
-        if(err) throw err;
+        //if(err) throw err;
         console.log("Result: " + result);
         res.send("Result: " + result);
       });
