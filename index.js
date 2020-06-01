@@ -2,11 +2,12 @@ const express = require('express')
 const path = require('path')
 const mysql = require('mysql');
 const PORT = process.env.PORT || 5000
+
 var con = mysql.createConnection({
-    host: "localhost:3306",
-    user: "admin",
+    host: "localhost",
+    user: "devaxissoftware_admin",
     password: "Xtend321",
-  databaes: "devaxissoftware_Organizer"});
+    database: "devaxissoftware_Organizer"});
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -17,14 +18,19 @@ express()
   })
   .get('/db', function (req, res) {
     con.connect(function(err){
-      console.log("Connected!");
-      con.query("SELECT * FROM `USERS`", function(err, result) {
-        //if(err) throw err;
-        console.log("Result: " + result);
-        res.send("Result: " + result);
-      });
+      if(err){
+        console.log("Error getting connection");
+        return console.error("Error: " + err.message);
+      }
+      console.log("Connected");
+      con.query("SELECT * FROM USERS", (err, rows) => {
+        if(err){
+          return console.error("Error: " + err.message);
+        }
+        console.log(rows);
+        res.send(rows);
+      })
     });
-    
   })
   .get('/index', (req, res) => res.render('pages/index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
