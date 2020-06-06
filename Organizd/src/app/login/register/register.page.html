@@ -1,0 +1,122 @@
+<ion-content color="primary">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="register-form">
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="12" class="ion-no-padding">
+        <!--<img src="assets/img/nsg-logo.png">-->
+        <h1>Orignizd Logo Here</h1>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="accountSuccess">
+      <ion-row>
+        <ion-col>
+          <p>Account activated </p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10" offset="1">
+          <ion-button 
+            routerLink="/login" 
+            expand="full" 
+            color="secondary"
+          >
+          Login
+        </ion-button>
+        </ion-col>
+      </ion-row>  
+    </ion-grid> 
+
+    <ion-grid *ngIf="!accountSuccess">
+      <ion-row>
+        <ion-col size="10" offset="1">
+          <ion-item>
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input 
+              type="text"
+              name="firstName" 
+              ngModel 
+              required 
+              #firstNameCtrl="ngModel"
+            ></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!firstNameCtrl.valid && firstNameCtrl.touched" lines="none">
+              <ion-label class="error-danger">First Name required.</ion-label>
+          </ion-item>
+        </ion-col>  
+        <ion-col size="10" offset="1">
+          <ion-item>
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input 
+              type="text"
+              name="lastName" 
+              ngModel 
+              required 
+              #lastNameCtrl="ngModel"
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item *ngIf="!lastNameCtrl.valid && lastNameCtrl.touched" lines="none">
+              <ion-label class="error-danger">Last Name required.</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size="10" offset="1">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input 
+              type="text"
+              name="email" 
+              ngModel 
+              required 
+              email
+              #emailCtrl="ngModel"
+            >
+            </ion-input>
+          </ion-item>
+          <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none">
+              <ion-label class="error-danger">Should be a valid email address.</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size="10" offset="1">
+          <ion-item class="margin-top-5">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input 
+              type="password" 
+              name="password"
+              ngModel 
+              required
+              #passwordCtrl="ngModel"
+            ></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched" lines="none">
+              <ion-label class="error-danger">Should be 6 characters long.</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10" offset="1">
+          <ion-button 
+            type="submit" 
+            [disabled]="!f.valid" 
+            expand="full" 
+            color="secondary"
+          >
+          Activate Account
+        </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10" offset="1">
+          <ion-button 
+            routerLink="/login" 
+            expand="full" 
+            color="secondary"
+          >
+          Login
+        </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>  
+</ion-content>

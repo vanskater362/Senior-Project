@@ -1,0 +1,43 @@
+.login-form{
+   top: 50%;
+   left: 50%;
+   position: absolute;
+   text-align: center;
+   width: 100%;
+   transform: translate(-50%, -50%);
+   .primary-item{
+       --background: var(--ion-color-primary);
+       --background-focused: var(--ion-color-primary);
+   }
+   .secondary-item-text{
+       color: var(--ion-color-primary-contrast);
+   }
+   .error-danger{
+       color: var(--ion-color-danger);
+   }
+   .btn-register{
+       padding-top: 10px;
+   }
+   .margin-top-5{
+       margin-top: 5px;
+   }
+   .forgot-box{
+       padding: 10px 0;
+       .btn-forgot{
+           color: var(--ion-color-primary-contrast);
+       }
+   }
+}
+
+@media (prefers-color-scheme: dark) {
+   .login-form{
+       .secondary-item-text{
+           color: var(--ion-color-basic-contrast);
+       }
+       .forgot-box{
+           .btn-forgot{
+               color: var(--ion-color-basic-contrast);
+           }
+       }
+   }
+}

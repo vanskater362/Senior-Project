@@ -1,0 +1,65 @@
+<ion-content color="primary">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="login-form">
+    
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col size="12" class="ion-no-padding">
+        <!--<img src="../assets/img/logo.png">-->
+        <h1>Orginizd Logo here</h1>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10" offset="1">
+          <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input 
+              type="text" 
+              name="email" 
+              autofocus="true"
+              ngModel 
+              required 
+              #emailCtrl="ngModel"
+            ></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none">
+              <ion-label class="error-danger">Should be a valid email address.</ion-label>
+          </ion-item>
+          <ion-item class="margin-top-5">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input 
+              type="password" 
+              name="password"
+              ngModel 
+              required
+              #passwordCtrl="ngModel"
+            ></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched" lines="none">
+              <ion-label class="error-danger">Should be 6 characters long.</ion-label>
+          </ion-item>
+          <div class="forgot-box ion-text-right">
+            <a class="btn-forgot" routerLink="/auth/forgot">Forgot Password?</a>
+          </div>
+          <div class="ion-text-center">
+            <ion-button 
+              type="submit" 
+              color="secondary" 
+              expand="block"
+              [disabled]="!f.valid"
+            >
+                LOGIN
+            </ion-button>            
+          </div>
+          <div class="btn-register">
+            <a routerLink="/login/register" class="secondary-item-text">
+                REGISTER
+            </a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

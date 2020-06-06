@@ -1,0 +1,15 @@
+.register-form{
+   top: 50%;
+   left: 50%;
+   position: absolute;
+   text-align: center;
+   width: 100%;
+   transform: translate(-50%, -50%);
+   
+   .secondary-item-text{
+       color: var(--ion-color-primary-contrast);
+   }
+   .error-danger{
+       color: var(--ion-color-danger);
+   }
+}
