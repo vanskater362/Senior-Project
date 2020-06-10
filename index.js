@@ -79,42 +79,46 @@ express()
     var password = req.body.password;
     var hashedpass = null;
 
-    con.query(`SELECT PASSWORD FROM USERS WHERE EMAIL = "${username}"`, function (err, res) {
+    con.query(`SELECT * FROM USERS WHERE EMAIL = "${username}"`, function (err, res) {
       if (err) {
         return console.error("Error: " + err.message);
       }
 
-      result = JSON.stringify(res[0])
-      result = result.replace(/(^\[)/, '');
-      result = result.replace(/(\]$)/, '');
-      try {
-        var resultObj = JSON.parse(result);
-      } catch (e) {
-        console.log("Error, not a valid JSON string");
-      }
-      var my_value = resultObj["PASSWORD"];
-      console.log("parsed res: " + my_value);
-
       if (res.length === 0) {
-        res = { success: false, message: "Login Error: User not found!" };
-        response.json(res);
+        response.status(400).send({ message: "Login Error: User not found!" });
+        //res = { success: false, message: "Login Error: User not found!" };
+        //response.json(res);
         console.log("Fail User doesn't match");
       }
       else {
+        result = JSON.stringify(res[0]);
+        result = result.replace(/(^\[)/, '');
+        result = result.replace(/(\]$)/, '');
+        try {
+          var resultObj = JSON.parse(result);
+        } catch (e) {
+          console.log("Error, not a valid JSON string");
+        }
+
+        var my_value = resultObj["PASSWORD"];
+        console.log("parsed res: " + my_value);
+
         hashedpass = my_value;
         bcrypt.compare(password, hashedpass, function (err, ress) {
           if (err) {
             return console.error("Hash Error: " + err.message);
           }
           if (!ress) {
-            ress = { success: false, message: "Login Error: Password doesn't match!" };
+            response.status(400).send({ message: "Login Error: Password doesn't match!" })
+            //ress = { success: false, message: "Login Error: Password doesn't match!" };
             console.log("Fail: Password doesn't match");
           }
           else {
-            ress = { success: true, message: "Successful Login!" };
+            ress = resultObj;
+            //ress = { success: true, message: "Successful Login!" };
             console.log("Success!");
+            response.json(ress);
           }
-          response.json(ress);
         });
       }
     });
