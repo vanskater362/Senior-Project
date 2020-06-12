@@ -4,4 +4,5 @@ export interface Trip {
    to: string;
    date: Date;
    total: Number;
+   userID: string;
 }

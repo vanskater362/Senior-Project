@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
           .subscribe(
             resData => {
               loadingEl.dismiss();
-              document.location.href = '/miles-tracker-list';
+              document.location.href = '/mileage-tracker';
             },
             errRes => {
               loadingEl.dismiss();

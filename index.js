@@ -39,6 +39,28 @@ express()
       res.send(rows);
     })
   })
+  .post('/miles/submit', async (req, res) => {
+    var from = req.body.from;
+    var to = req.body.to;
+    var date = req.body.date;
+    var total = req.body.total;
+    var userID = req.body.userID;
+    //console.log(`INSERT INTO MILAGE (Beginning, Ending, Date, total, UserID) VALUES("${from}","${to}","${date}","${total}","${userID}")`);
+
+    con.query(`INSERT INTO MILAGE (Beginning, Ending, Date, total, UserID) VALUES("${from}","${to}","${date}","${total}","${userID}")`, function (err, result) {
+      if (err) {
+        return console.error("Error: " + err.message);
+      }
+      if (!result) {
+        console.log("miles not inputed");
+        res.status(400).send({ message: "Miles Not Inputed." });
+      } else {
+        console.log("miles inputed");
+        //result = { success: true, username: username };
+        res.status(200).send({message: "Miles Inputed."})
+      }
+    });
+  })
   .post('/auth/registerUser', async (req, res) => {
     console.log("/auth/registerUser " + req);
 
@@ -50,8 +72,6 @@ express()
     //console.log("username: "+username +" password: " + password + " First name: " +fName +" Last name:"+ lName);
 
     //var insertP = `INSERT INTO USERS (EMAIL, PASSWORD, FirstName, LastName) VALUES(${username},${hash},${fName},${lName})`;
-
-    console.log("Connected");
     bcrypt.hash(password, 10, function (err, hash) {
       if (err) {
         return console.error("Error: " + err.message);
@@ -117,7 +137,7 @@ express()
             ress = resultObj;
             //ress = { success: true, message: "Successful Login!" };
             console.log("Success!");
-            response.json(ress);
+            response.json(res);
           }
         });
       }

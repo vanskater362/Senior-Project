@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Trip } from '../models/trip.model';
+import { Trip } from '../../models/trip.model';
 
 @Component({
   selector: 'app-miles-tracker-list',
@@ -13,14 +13,16 @@ export class MilesTrackerListPage implements OnInit {
       from: 'Home',
       to: 'Jane\'s',
       date: new Date(),
-      total: 32
+      total: 32,
+      userID: '1'
     },
     {
       id: '2',
       from: 'Home',
       to: 'John\'s',
       date: new Date(),
-      total: 41
+      total: 41,
+      userID: '2'
     }
   ]
 

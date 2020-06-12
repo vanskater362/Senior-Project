@@ -1,0 +1,89 @@
+<ion-header color="primary">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Mileage Tracker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="register-form">
+  <ion-grid >
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="floating">From</ion-label>
+          <ion-input 
+            type="text"
+            name="from" 
+            ngModel 
+            required 
+            #fromCtrl="ngModel"
+          ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!fromCtrl.valid && fromCtrl.touched" lines="none">
+            <ion-label class="error-danger">From field is required.</ion-label>
+        </ion-item>
+      </ion-col>  
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="floating">To</ion-label>
+          <ion-input 
+            type="text"
+            name="to" 
+            ngModel 
+            required 
+            #toCtrl="ngModel"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-item *ngIf="!toCtrl.valid && toCtrl.touched" lines="none">
+            <ion-label class="error-danger">To field required.</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="10" offset="1">
+        <ion-item>
+          <ion-label position="floating">Total Miles</ion-label>
+          <ion-input 
+            type="number"
+            name="totalMiles" 
+            ngModel 
+            required 
+            #totalMilesCtrl="ngModel"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-item *ngIf="!totalMilesCtrl.valid && totalMilesCtrl.touched" lines="none">
+            <ion-label class="error-danger">Total Miles required.</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size="10" offset="1">
+        <ion-item class="margin-top-5">
+          <ion-label position="floating">Date</ion-label>
+          <ion-input 
+            type="date" 
+            name="date"
+            ngModel 
+            required
+            #dateCtrl="ngModel"
+          ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!dateCtrl.valid && dateCtrl.touched" lines="none">
+            <ion-label class="error-danger">Select a Date.</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-button 
+          type="submit" 
+          [disabled]="!f.valid" 
+          expand="full" 
+          color="secondary"
+        >
+        Log Mileage
+      </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>  
+
+</ion-content>

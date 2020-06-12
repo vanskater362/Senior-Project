@@ -8,8 +8,17 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'miles-tracker-list',
-    loadChildren: () => import('./miles-tracker-list/miles-tracker-list.module').then( m => m.MilesTrackerListPageModule)
+    path: 'mileage-tracker',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./mileage-tracker/mileage-tracker.module').then( m => m.MileageTrackerPageModule)
+      },
+      {
+        path: 'miles-tracker-list',
+        loadChildren: () => import('./mileage-tracker/miles-tracker-list/miles-tracker-list.module').then( m => m.MilesTrackerListPageModule)
+      }
+    ]
   },
   {
     path: 'login',
@@ -23,6 +32,10 @@ const routes: Routes = [
         loadChildren: () => import('./login/register/register.module').then( m => m.RegisterPageModule)
       }
     ]
+  },
+  {
+    path: 'mileage-tracker',
+    loadChildren: () => import('./mileage-tracker/mileage-tracker.module').then( m => m.MileageTrackerPageModule)
   },
 ];
 

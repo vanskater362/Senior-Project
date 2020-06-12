@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, from } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { User } from '../models/user';
 import { Register } from '../models/register';
+import { Trip } from '../models/trip.model';
 
 
 @Injectable({
@@ -47,6 +48,12 @@ export class AuthenticationService {
   updateUser(input: any) {
     localStorage.setItem('currentUser', JSON.stringify(input));
     this.currentUserSubject.next(input);
+  }
+
+  subMiles( input: Trip) {
+    return this.http
+      .post<boolean>(environment.apiUrl + '/miles/submit', input,{headers: this.headers})
+      .pipe(share());
   }
 
   register( input: Register) {
