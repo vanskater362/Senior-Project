@@ -1,0 +1,13 @@
+{
+  "appId": "com.TheOnePlace.com",
+  "appName": "The-One-Place",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
