@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://tony.devaxissoftware.com/senior-project',
+  apiUrl: 'https://tony.devaxissoftware.com/senior-project',
   expenseImgUrl: ''
 };
 
