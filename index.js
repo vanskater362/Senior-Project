@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
+const querystring = require('querystring');
 const PORT = process.env.PORT || 5000
 
 var con = mysql.createPool({
@@ -31,20 +32,41 @@ express()
   })
   .get('/db', function (req, res) {
     console.log("Connected");
-    con.query("SELECT * FROM USERS", (err, rows) => {
+    /*con.query(`SELECT * FROM MILAGE WHERE UserID="5" AND Date="2020-06-18"`), (err, result) => {
       if (err) {
         return console.error("Error: " + err.message);
       }
-      console.log(rows.PASSWORD);
+      console.log(JSON.stringify(result));
+      res.send(result);
+    }*/
+    con.query(`SELECT * FROM MILAGE WHERE UserID="5" AND Date="2020-06-18"`, (err, rows) => {
+      if (err) {
+        return console.error("Error: " + err.message);
+      }
+      //console.log(rows.PASSWORD);
+      console.log(JSON.stringify(rows));
       res.send(rows);
     })
   })
+  .get('/miles/get', (req, res) => {
+    const userID = req.query.userId;
+    const date = req.query.date;
+    
+    console.log(`SELECT * FROM milage WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`);
+    con.query(`SELECT * FROM milage WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`, (err, result) => {
+      if (err) {
+        return console.error("Error: " + err.message);
+      }
+      console.log(JSON.stringify(result));
+      res.json(result);
+    })
+  })
   .post('/miles/submit', async (req, res) => {
-    var from = req.body.from;
-    var to = req.body.to;
-    var date = req.body.date;
+    var from = req.body.Beginning;
+    var to = req.body.Ending;
+    var date = req.body.Date;
     var total = req.body.total;
-    var userID = req.body.userID;
+    var userID = req.body.UserID;
     //console.log(`INSERT INTO MILAGE (Beginning, Ending, Date, total, UserID) VALUES("${from}","${to}","${date}","${total}","${userID}")`);
 
     con.query(`INSERT INTO MILAGE (Beginning, Ending, Date, total, UserID) VALUES("${from}","${to}","${date}","${total}","${userID}")`, function (err, result) {
@@ -62,7 +84,7 @@ express()
     });
   })
   .post('/auth/registerUser', async (req, res) => {
-    console.log("/auth/registerUser " + req);
+    //console.log("/auth/registerUser " + req);
 
     var username = req.body.email;
     var password = req.body.password;

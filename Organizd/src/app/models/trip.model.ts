@@ -1,8 +1,8 @@
 export interface Trip {
-   id: string;
-   from: string;
-   to: string;
-   date: Date;
+   MilageID: string;
+   Beginning: string;
+   Ending: string;
+   Date: string;
    total: Number;
-   userID: string;
+   UserID: string;
 }

@@ -5,8 +5,6 @@ import { BehaviorSubject, Observable, from } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { User } from '../models/user';
 import { Register } from '../models/register';
-import { Trip } from '../models/trip.model';
-
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +14,7 @@ export class AuthenticationService {
   public currentUser: Observable<User>;
   headers = new HttpHeaders()
           .set('Content-Type', 'application/json');
+          //.set('Access-Control-Allow-Origin', '*');
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(
@@ -48,12 +47,6 @@ export class AuthenticationService {
   updateUser(input: any) {
     localStorage.setItem('currentUser', JSON.stringify(input));
     this.currentUserSubject.next(input);
-  }
-
-  subMiles( input: Trip) {
-    return this.http
-      .post<boolean>(environment.apiUrl + '/miles/submit', input,{headers: this.headers})
-      .pipe(share());
   }
 
   register( input: Register) {
