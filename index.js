@@ -52,8 +52,8 @@ express()
     const userID = req.query.userId;
     const date = req.query.date;
     
-    console.log(`SELECT * FROM milage WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`);
-    con.query(`SELECT * FROM milage WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`, (err, result) => {
+    console.log(`SELECT * FROM MILAGE WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`);
+    con.query(`SELECT * FROM MILAGE WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`, (err, result) => {
       if (err) {
         return console.error("Error: " + err.message);
       }
