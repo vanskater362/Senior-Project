@@ -7,11 +7,12 @@
 <ion-content color="primary">
   <h1 class="ion-text-center capitalize">{{ time }}</h1>
   <p class="ion-text-center">A total of records you have entered for {{ time }}.</p>
+  <div >
   <ion-grid fixed>
     <ion-list>
       <ion-row class="ion-text-center">
         <ion-item-divider>
-          <ion-col>
+          <ion-col >
             <ion-label>DATE</ion-label>
           </ion-col>
           <ion-col>
@@ -25,23 +26,23 @@
           </ion-col>
         </ion-item-divider>
       </ion-row>
-      <ion-row class="ion-text-center">
-        <ion-col>
+      <ion-row class="nowrap ion-align-items-end">
+        <ion-col class="gridContainer">
           <ion-item *ngFor="let trip of trips" class="numberTXT">
             {{ trip.Date | date: 'MM/dd/yy' }}
           </ion-item>
         </ion-col>
-        <ion-col>
-          <ion-item *ngFor="let trip of trips">
-            {{ trip.Beginning }}
+        <ion-col class="gridContainer">
+          <ion-item *ngFor="let trip of trips" >
+            {{ trip.Beginning }} 
           </ion-item>
         </ion-col>
-        <ion-col>
-          <ion-item *ngFor="let trip of trips">
-            {{ trip.Ending }}
+        <ion-col class="gridContainer">
+          <ion-item *ngFor="let trip of trips" >
+            {{ trip.Ending }} 
           </ion-item>
         </ion-col>
-        <ion-col>
+        <ion-col class="gridContainer">
           <ion-item *ngFor="let trip of trips" class="numberTXT">
             {{ trip.total }} 
           </ion-item>
@@ -49,4 +50,5 @@
       </ion-row>
     </ion-list>
   </ion-grid>
+</div>
 </ion-content>
