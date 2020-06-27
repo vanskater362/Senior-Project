@@ -1,3 +1,23 @@
 <ion-app>
+  <ion-menu side="start" menuId="first" content-id="content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+    
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" *ngFor="let m of menuItem">
+          <ion-item (click)="logout(m.title)" lines="none" [routerLink]="m.url" routerDirection="root" [class.active-menu]="selectedPath === m.url">
+            {{ m.title }}
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-router-outlet id="content"></ion-router-outlet>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

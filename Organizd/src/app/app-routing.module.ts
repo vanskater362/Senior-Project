@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: 'mileage-tracker',
     loadChildren: () => import('./mileage-tracker/mileage-tracker.module').then( m => m.MileageTrackerPageModule)
-  },
+  }
 ];
 
 @NgModule({

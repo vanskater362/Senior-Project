@@ -11,3 +11,8 @@ ion-item {
    text-overflow: inherit;
    overflow: inherit;
 }
+
+.scrolly {
+    overflow-y: scroll !important;
+    max-height: 65vh;
+}

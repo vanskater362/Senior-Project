@@ -14,24 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class MilesTrackerListPage implements OnInit {
   isLoading = false;
   time: string;
-  trips: Array<Trip>;/* = [
-    {
-      id: '1',
-      from: 'Home',
-      to: 'Jane\'s',
-      date: moment().format('YYYY-MM-DD'),
-      total: 32,
-      userID: '1'
-    },
-    {
-      id: '2',
-      from: 'Home',
-      to: 'John\'s',
-      date: moment().format('YYYY-MM-DD'),
-      total: 41,
-      userID: '2'
-    }
-  ]*/
+  trips: Array<Trip>;
 
   constructor(
     private milesService: MilesService,
@@ -60,7 +43,7 @@ export class MilesTrackerListPage implements OnInit {
             resData => {
               this.trips = resData;
               loadingEl.dismiss();
-              //document.location.href = '/mileage-tracker/miles-tracker-list';
+              
             },
             errRes => {
               loadingEl.dismiss();
