@@ -40,6 +40,18 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'client-list',
+    loadChildren: () => import('./client-list/client-list.module').then( m => m.ClientListPageModule)
+  },
+  {
+    path: 'add-client',
+    loadChildren: () => import('./add-client/add-client.module').then( m => m.AddClientPageModule)
+  },
+  {
+    path: 'client-detail',
+    loadChildren: () => import('./client-detail/client-detail.module').then( m => m.ClientDetailPageModule)
   }
 ];
 

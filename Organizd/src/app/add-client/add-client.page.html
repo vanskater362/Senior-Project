@@ -1,6 +1,6 @@
 <ion-header color="primary">
   <ion-toolbar color="primary">
-    <ion-title class="ion-text-center">Mileage Tracker</ion-title>
+    <ion-title class="ion-text-center">Add Client</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -62,7 +62,6 @@
       </ion-col>
       <ion-col size="10" offset="1">
         <ion-item class="margin-top-5">
-          <ion-label position="floating">Date</ion-label>
           <ion-input class="numberTXT"
             type="date" 
             name="date"
@@ -83,62 +82,10 @@
           [disabled]="!f.valid" 
           expand="full" 
           color="secondary">
-        Log Mileage
+        Add New Client
       </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 </form>  
-<h1 class="ion-text-center">Total Logged</h1>
-<ion-grid class="ion-text-center" fixed>
-  <ion-row>
-    <ion-col size="6">Today</ion-col>
-    <ion-col size="6">This Week</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="6">
-      <div style="min-height: 60px;">
-        <ion-fab horizontal="center" vertical="center">
-          <ion-fab-button color="secondary" routerLink="/mileage-tracker/miles-tracker-list" (click)="todayList()">
-            <ion-icon name="today-outline"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
-      </div>
-    </ion-col>
-    <ion-col size="6">
-      <div style="min-height: 60px;">
-        <ion-fab horizontal="center" vertical="center">
-        <ion-fab-button color="secondary" routerLink="/mileage-tracker/miles-tracker-list" (click)="weekList()">
-          <ion-icon name="calendar-outline"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </div>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="6">This Month</ion-col>
-    <ion-col size="6">This Year</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="6">
-      <div style="min-height: 60px;">
-        <ion-fab horizontal="center" vertical="center">
-        <ion-fab-button color="secondary" routerLink="/mileage-tracker/miles-tracker-list" (click)="monthList()">
-          <ion-icon name="calendar-outline"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </div>
-    </ion-col>
-    <ion-col size="6">
-      <div style="min-height: 60px;">
-        <ion-fab horizontal="center" vertical="center">
-      <ion-fab-button color="secondary" routerLink="/mileage-tracker/miles-tracker-list" (click)="yearList()">
-        <ion-icon name="calendar-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  </div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-
 </ion-content>
