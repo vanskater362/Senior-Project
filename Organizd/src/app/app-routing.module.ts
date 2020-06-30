@@ -36,6 +36,10 @@ const routes: Routes = [
   {
     path: 'mileage-tracker',
     loadChildren: () => import('./mileage-tracker/mileage-tracker.module').then( m => m.MileageTrackerPageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
   }
 ];
 
