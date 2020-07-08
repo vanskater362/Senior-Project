@@ -1,0 +1,18 @@
+.fixed[scrollx=true], div[scrolly=true] {
+   position: relative;
+   overflow: hidden;
+   display: inline-block;
+   white-space: nowrap;
+   width: 200%;
+   .scroll {
+      overflow: auto;
+    }
+ 
+   ::-webkit-scrollbar {
+     display: none;
+   }
+ }
+
+.fixed[scrollx=true] {
+   overflow-x: scroll !important;
+ }

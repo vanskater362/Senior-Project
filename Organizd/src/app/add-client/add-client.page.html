@@ -94,6 +94,7 @@
             name="state" 
             ngModel 
             required 
+            minlength=2
             #stateCtrl="ngModel">
           </ion-input>
         </ion-item>
@@ -105,10 +106,12 @@
         <ion-item>
           <ion-label position="floating">Zip Code</ion-label>
           <ion-input 
-            type="text"
+            type="number"
             name="zip" 
             ngModel 
             required 
+            minlength=5
+            maxlength=5
             #zipCtrl="ngModel">
           </ion-input>
         </ion-item>
@@ -120,10 +123,12 @@
         <ion-item class="margin-top-5">
           <ion-label position="floating">Phone Number</ion-label>
           <ion-input class="numberTXT"
-            type="tel" 
+            type="number" 
             name="tel"
             ngModel 
             required
+            minlength=10
+            maxlength=10
             #telCtrl="ngModel">
           </ion-input>
         </ion-item>
