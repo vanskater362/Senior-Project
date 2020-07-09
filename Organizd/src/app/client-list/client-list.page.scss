@@ -1,18 +1,17 @@
-.fixed[scrollx=true], div[scrolly=true] {
-   position: relative;
-   overflow: hidden;
-   display: inline-block;
-   white-space: nowrap;
-   width: 200%;
-   .scroll {
-      overflow: auto;
-    }
- 
-   ::-webkit-scrollbar {
-     display: none;
-   }
+.fab {
+   min-height: 115px;
+   min-width: 80px;
  }
 
-.fixed[scrollx=true] {
-   overflow-x: scroll !important;
+ .name {
+    text-align: end;
+    max-height: min-content;
+ }
+
+ ion-slides {
+    margin-left: 25px;
+ }
+
+ h2 {
+    margin: 5px;
  }

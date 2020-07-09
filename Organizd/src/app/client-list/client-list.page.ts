@@ -3,6 +3,7 @@ import { ClientService } from '../services/client.service';
 import { Client } from '../models/client';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-list',
@@ -10,6 +11,12 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./client-list.page.scss'],
 })
 export class ClientListPage implements OnInit {
+  sliderConfig = {
+    spaceBetween: 10,
+    slidesPerView: 4.5
+  }
+
+
   isLoading = false;
   clientList: Array<Client>;
   public activeList = new Array<Client>();
@@ -18,6 +25,7 @@ export class ClientListPage implements OnInit {
   public innactiveList = new Array<Client>();
 
   constructor( 
+    private router: Router,
     private clientService: ClientService,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController) { }
@@ -61,10 +69,8 @@ export class ClientListPage implements OnInit {
               this.clientList = resData;
               if (Array.isArray(this.clientList) && this.clientList.length) {
                 this.splitList(this.clientList);
-                console.log("1");
               }
-              loadingEl.dismiss(); 
-              console.log("2");
+              loadingEl.dismiss();               
             },
             errRes => {
               loadingEl.dismiss();
@@ -83,6 +89,10 @@ export class ClientListPage implements OnInit {
         buttons: ['Okay']
       })
       .then(alertEl => alertEl.present());
+  }
+
+  clientDetail(client: Client) {
+    this.router.navigate(['/client-detail'], { state: client });
   }
 
 }

@@ -12,78 +12,66 @@
 </ion-header>
 
 <ion-content color="primary">
-  <ion-grid class="ion-text-center" fixed>
+
     <h2 class="ion-text-left">Active Clients</h2>
-    <div *ngFor="let client of activeList">
-    <ion-row>
-      <ion-col size="6">{{ client.FirstName }} {{ client.LastName }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="6">
-        <div style="min-height: 60px;">
-          <ion-fab horizontal="center" vertical="center">
-            <ion-fab-button color="secondary" routerLink="/client-detail">
+    <ion-slides [options]="sliderConfig">
+      <ion-slide  *ngFor="let client of activeList">
+        <div class="ion-text-start" class="fab">
+          <span class="name">{{ client.FirstName }} {{ client.LastName }}</span>
+          <ion-fab class="ion-text-center" horizontal="center" vertical="bottom">
+            <ion-fab-button color="secondary" (click)="clientDetail(client)">
               <ion-icon name="person-outline"></ion-icon>
             </ion-fab-button>
           </ion-fab>
         </div>
-      </ion-col>
-    </ion-row>
-  </div>
+      </ion-slide>
+    </ion-slides>
     <h2 class="ion-text-left">Follow Up</h2>
-    <div class="fixed" scrollX="true">
-    <ion-row >
-      <ion-col col-33 *ngFor="let client of followList">
-        <div style="min-height: 60px;">
-          <ion-fab horizontal="center" vertical="center">
-            {{ client.FirstName }} {{ client.LastName }}
-            <ion-fab-button color="secondary" routerLink="/client-detail">
-              <ion-icon name="person-outline"></ion-icon>
-            </ion-fab-button>
-          </ion-fab>
-        </div>
-      </ion-col>
-    </ion-row>
-  </div>
+    
+      <ion-slides [options]="sliderConfig">
+        <ion-slide  *ngFor="let client of followList">
+          <div class="ion-text-start" class="fab">
+            <span class="name">{{ client.FirstName }} {{ client.LastName }}</span>
+            <ion-fab class="ion-text-center" horizontal="center" vertical="bottom">
+              <ion-fab-button color="secondary" routerLink="/client-detail">
+                <ion-icon name="person-outline"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+          </div>
+        </ion-slide>
+      </ion-slides>
+
     <h2 class="ion-text-left">Paused</h2>
-    <div *ngFor="let client of pausedList">
-    <ion-row >
-      <ion-col size="6">{{ client.FirstName }} {{ client.LastName }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="6">
-        <div style="min-height: 60px;">
-          <ion-fab horizontal="center" vertical="center">
+    <ion-slides [options]="sliderConfig">
+      <ion-slide  *ngFor="let client of pausedList">
+        <div class="ion-text-start" class="fab">
+          <span class="name">{{ client.FirstName }} {{ client.LastName }}</span>
+          <ion-fab class="ion-text-center" horizontal="center" vertical="center">
             <ion-fab-button color="secondary" routerLink="/client-detail">
               <ion-icon name="person-outline"></ion-icon>
             </ion-fab-button>
           </ion-fab>
         </div>
-      </ion-col>
-    </ion-row>
-  </div>
+      </ion-slide>
+    </ion-slides>
     <h2 class="ion-text-left">Inactive</h2>
-    <div *ngFor="let client of innactiveList">
-    <ion-row >
-      <ion-col size="6">{{ client.FirstName }} {{ client.LastName }}</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="6">
-        <div style="min-height: 60px;">
-          <ion-fab horizontal="center" vertical="center">
+    <ion-slides [options]="sliderConfig">
+      <ion-slide  *ngFor="let client of innactiveList">
+        <div class="ion-text-start" class="fab">
+          <span class="name">{{ client.FirstName }} {{ client.LastName }}</span>
+          <ion-fab class="ion-text-center" horizontal="center" vertical="center">
             <ion-fab-button color="secondary" routerLink="/client-detail">
               <ion-icon name="person-outline"></ion-icon>
             </ion-fab-button>
           </ion-fab>
         </div>
-      </ion-col>
-    </ion-row>
-  </div>
-  </ion-grid>
+      </ion-slide>
+    </ion-slides>
+
 
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="secondary"  routerLink="/add-client">
+    <ion-fab-button color="secondary" routerLink="/add-client">
       <ion-icon name="person-add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>clientDetail</ion-title>
+<ion-header color="primary">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Client Detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-menu-button menu="first" autoHide="false"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="primary">
+  <div color="secondary" class="ion-text-center circle">
+    <ion-icon class="title" name="person-outline"></ion-icon>
+  </div>
+  {{ state.FirstName }} {{ state.LastName }}
 
 </ion-content>

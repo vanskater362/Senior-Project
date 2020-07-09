@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController) { 
       if (this.authenticationService.currentUserValue) {
-        this.router.navigate(['/mileage-tracker']);
+        this.router.navigate(['/dashboard']);
       }
   }
 
