@@ -32,13 +32,6 @@ express()
   })
   .get('/db', function (req, res) {
     console.log("Connected");
-    /*con.query(`SELECT * FROM MILAGE WHERE UserID="5" AND Date="2020-06-18"`), (err, result) => {
-      if (err) {
-        return console.error("Error: " + err.message);
-      }
-      console.log(JSON.stringify(result));
-      res.send(result);
-    }*/
     con.query(`SELECT * FROM MILAGE WHERE UserID="5" AND Date="2020-06-18"`, (err, rows) => {
       if (err) {
         return console.error("Error: " + err.message);
@@ -67,7 +60,6 @@ express()
     var date = req.body.Date;
     var total = req.body.total;
     var userID = req.body.UserID;
-    //console.log(`INSERT INTO MILAGE (Beginning, Ending, Date, total, UserID) VALUES("${from}","${to}","${date}","${total}","${userID}")`);
 
     con.query(`INSERT INTO MILAGE (Beginning, Ending, Date, total, UserID) VALUES("${from}","${to}","${date}","${total}","${userID}")`, function (err, result) {
       if (err) {
@@ -78,8 +70,24 @@ express()
         res.status(400).send({ message: "Miles Not Inputed." });
       } else {
         console.log("miles inputed");
-        //result = { success: true, username: username };
         res.status(200).send({message: "Miles Inputed."})
+      }
+    });
+  })
+  .post('/client/updateStatus', async (req, res) => {
+    var clientId = req.body.ClientID;
+    var process = req.body.process;
+    
+    con.query(`UPDATE CLIENTS SET process = ${process} WHERE clientID = ${clientId}`, function(err, result) {
+      if (err) {
+        return console.error("Error: " + err.message);
+      }
+      if (!result) {
+        console.log("client not updated");
+        res.status(400).send({ message: "Client Not Updated." });
+      } else {
+        console.log("client updated");
+        res.status(200).send({message: "Client Updated."})
       }
     });
   })
@@ -95,8 +103,6 @@ express()
     var phone = req.body.PHONE;
     var process = req.body.process;
     var userID = req.body.UserID;
-    //console.log(`INSERT INTO CLIENTS (FirstName, LastName, address1, address2, city, state, zip, email, process, UserID) 
-    //           VALUES("${firstName}","${lastName}","${address1}","${address2}","${city}","${state}","${zip}","${email}","${process}","${userID}")`);
 
     con.query(`INSERT INTO CLIENTS (FirstName, LastName, address1, address2, city, state, zip, phone, email, process, UserID) 
                VALUES("${firstName}","${lastName}","${address1}","${address2}","${city}","${state}","${zip}", "${phone}","${email}","${process}","${userID}")`,
@@ -109,7 +115,6 @@ express()
         res.status(400).send({ message: "Client Not Inputed." });
       } else {
         console.log("client inputed");
-        //result = { success: true, username: username };
         res.status(200).send({message: "Client Inputed."})
       }
     });
@@ -117,32 +122,25 @@ express()
   .get('/client/get', (req, res) => {
     const userID = req.query.userId;
     
-    //console.log(`SELECT * FROM MILAGE WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`);
     con.query(`SELECT * FROM clients WHERE UserID="${userID}"`, (err, result) => {
       if (err) {
         return console.error("Error: " + err.message);
       }
-      console.log(JSON.stringify(result));
       res.json(result);
     })
   })
   .post('/auth/registerUser', async (req, res) => {
-    //console.log("/auth/registerUser " + req);
-
     var username = req.body.email;
     var password = req.body.password;
     var fName = req.body.firstName;
     var lName = req.body.lastName;
 
-    //console.log("username: "+username +" password: " + password + " First name: " +fName +" Last name:"+ lName);
-
-    //var insertP = `INSERT INTO USERS (EMAIL, PASSWORD, FirstName, LastName) VALUES(${username},${hash},${fName},${lName})`;
     bcrypt.hash(password, 10, function (err, hash) {
       if (err) {
         return console.error("Error: " + err.message);
       }
       console.log("password hashed");
-      //console.log(`INSERT INTO USERS (EMAIL, PASSWORD, FirstName, LastName) VALUES("${username}","${hash}","${fName}","${lName}")`);
+      
       con.query(`INSERT INTO USERS (EMAIL, PASSWORD, FirstName, LastName) VALUES("${username}","${hash}","${fName}","${lName}")`, function (err, result) {
         if (err) {
           return console.error("Error: " + err.message);
@@ -195,12 +193,10 @@ express()
           }
           if (!ress) {
             response.status(400).send({ message: "Login Error: Password doesn't match!" })
-            //ress = { success: false, message: "Login Error: Password doesn't match!" };
             console.log("Fail: Password doesn't match");
           }
           else {
             ress = resultObj;
-            //ress = { success: true, message: "Successful Login!" };
             console.log("Success!");
             response.json(res);
           }

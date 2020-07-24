@@ -27,4 +27,10 @@ export class ClientService {
       .get<Array<Client>>(environment.apiUrl + '/client/get', {params: params})
       .pipe(share());
   }
+
+  updateStatus(ClientID: string, process: string){    
+    return this.http
+      .post<boolean>(environment.apiUrl + '/client/updateStatus', {ClientID,process},{headers: this.headers})
+      .pipe(share());
+  }
 }

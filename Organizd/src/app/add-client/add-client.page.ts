@@ -13,6 +13,7 @@ import { ClientService } from '../services/client.service'
 export class AddClientPage implements OnInit {
 
   public addClient: Client = {
+    ClientID: null,
     FirstName: '',
     LastName: '',
     EMAIL: '',

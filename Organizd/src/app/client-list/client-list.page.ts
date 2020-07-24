@@ -31,11 +31,21 @@ export class ClientListPage implements OnInit {
     private alertCtrl: AlertController) { }
 
   ngOnInit() {
+    
+    
+  }
+
+  ionViewWillEnter(){
+
     const userId = this.getUserID();
     this.getClients(userId);
   }
 
   splitList(clientList: Array<Client>) {
+    this.activeList.length = 0;
+    this.followList.length = 0;
+    this.pausedList.length = 0;
+    this.innactiveList.length = 0;
     clientList.forEach(element => {
       if (element.process === 1){ this.activeList.push(element); }
       if (element.process === 2){ this.followList.push(element); }
