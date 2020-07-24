@@ -33,7 +33,7 @@
           <div class="ion-text-start" class="fab">
             <span class="name">{{ client.FirstName }} {{ client.LastName }}</span>
             <ion-fab class="ion-text-center" horizontal="center" vertical="bottom">
-              <ion-fab-button color="secondary" routerLink="/client-detail">
+              <ion-fab-button color="secondary" (click)="clientDetail(client)">
                 <ion-icon name="person-outline"></ion-icon>
               </ion-fab-button>
             </ion-fab>
@@ -47,7 +47,7 @@
         <div class="ion-text-start" class="fab">
           <span class="name">{{ client.FirstName }} {{ client.LastName }}</span>
           <ion-fab class="ion-text-center" horizontal="center" vertical="center">
-            <ion-fab-button color="secondary" routerLink="/client-detail">
+            <ion-fab-button color="secondary"(click)="clientDetail(client)">
               <ion-icon name="person-outline"></ion-icon>
             </ion-fab-button>
           </ion-fab>
@@ -60,7 +60,7 @@
         <div class="ion-text-start" class="fab">
           <span class="name">{{ client.FirstName }} {{ client.LastName }}</span>
           <ion-fab class="ion-text-center" horizontal="center" vertical="center">
-            <ion-fab-button color="secondary" routerLink="/client-detail">
+            <ion-fab-button color="secondary" (click)="clientDetail(client)">
               <ion-icon name="person-outline"></ion-icon>
             </ion-fab-button>
           </ion-fab>

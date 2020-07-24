@@ -12,9 +12,75 @@
 </ion-header>
 
 <ion-content color="primary">
-  <div color="secondary" class="ion-text-center circle">
-    <ion-icon class="title" name="person-outline"></ion-icon>
-  </div>
-  {{ state.FirstName }} {{ state.LastName }}
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="3"></ion-col>
+      <ion-col size="3">
+        <div color="secondary" class="ion-text-center circle">
+          <ion-icon class="title" name="person-outline"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="detail strong">
+      <ion-col class="ion-text-center" size="12">
+        <ion-title>{{ state.FirstName }} {{ state.LastName }}</ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="ion-text-center detail" size="12">
+        {{ state.address1 }} {{ state.city }}, {{ state.state }} {{ state.zip }}
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="ion-text-center detail" size="12">
+        {{ state.EMAIL }}
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="ion-text-center detail" size="12">
+        {{ state.PHONE }}
+      </ion-col>
+    </ion-row>
+
+
+    <ion-row class="ion-text-center">
+      <ion-col class="strong" size="4">Pictures</ion-col>
+      <ion-col class="strong" size="4">Receipts</ion-col>
+      <ion-col class="strong" size="4">Products</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="4">
+        <div style="min-height: 60px;">
+          <ion-fab horizontal="center" vertical="center">
+          <ion-fab-button color="secondary">
+            <ion-icon name="camera-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </div>
+      </ion-col>
+      <ion-col size="4">
+        <div style="min-height: 60px;">
+          <ion-fab horizontal="center" vertical="center">
+          <ion-fab-button color="secondary">
+            <ion-icon name="receipt-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </div>
+      </ion-col>
+      <ion-col size="4">
+        <div style="min-height: 60px;">
+          <ion-fab horizontal="center" vertical="center">
+          <ion-fab-button color="secondary">
+            <ion-icon name="cube-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </div>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
 
 </ion-content>
