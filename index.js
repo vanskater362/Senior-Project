@@ -30,7 +30,7 @@ express()
   .get('/', function (req, res) {
     res.send('Hello World! Test string');
   })
-  .get('/db', function (req, res) {
+  /*.get('/db', function (req, res) {
     console.log("Connected");
     con.query(`SELECT * FROM MILAGE WHERE UserID="5" AND Date="2020-06-18"`, (err, rows) => {
       if (err) {
@@ -40,13 +40,13 @@ express()
       console.log(JSON.stringify(rows));
       res.send(rows);
     })
-  })
+  })*/
   .get('/miles/get', (req, res) => {
     const userID = req.query.userId;
     const date = req.query.date;
     
-    console.log(`SELECT * FROM MILAGE WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`);
-    con.query(`SELECT * FROM MILAGE WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`, (err, result) => {
+    console.log(`SELECT * FROM milage WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`);
+    con.query(`SELECT * FROM milage WHERE UserID="${userID}" AND ${date} ORDER BY Date ASC`, (err, result) => {
       if (err) {
         return console.error("Error: " + err.message);
       }
@@ -61,7 +61,7 @@ express()
     var total = req.body.total;
     var userID = req.body.UserID;
 
-    con.query(`INSERT INTO MILAGE (Beginning, Ending, Date, total, UserID) VALUES("${from}","${to}","${date}","${total}","${userID}")`, function (err, result) {
+    con.query(`INSERT INTO milage (Beginning, Ending, Date, total, UserID) VALUES("${from}","${to}","${date}","${total}","${userID}")`, function (err, result) {
       if (err) {
         return console.error("Error: " + err.message);
       }
@@ -78,7 +78,7 @@ express()
     var clientId = req.body.ClientID;
     var process = req.body.process;
     
-    con.query(`UPDATE CLIENTS SET process = ${process} WHERE clientID = ${clientId}`, function(err, result) {
+    con.query(`UPDATE clients SET process = ${process} WHERE clientID = ${clientId}`, function(err, result) {
       if (err) {
         return console.error("Error: " + err.message);
       }
@@ -104,7 +104,7 @@ express()
     var process = req.body.process;
     var userID = req.body.UserID;
 
-    con.query(`INSERT INTO CLIENTS (FirstName, LastName, address1, address2, city, state, zip, phone, email, process, UserID) 
+    con.query(`INSERT INTO clients (FirstName, LastName, address1, address2, city, state, zip, phone, email, process, UserID) 
                VALUES("${firstName}","${lastName}","${address1}","${address2}","${city}","${state}","${zip}", "${phone}","${email}","${process}","${userID}")`,
                function (err, result) {
       if (err) {
@@ -141,7 +141,7 @@ express()
       }
       console.log("password hashed");
       
-      con.query(`INSERT INTO USERS (EMAIL, PASSWORD, FirstName, LastName) VALUES("${username}","${hash}","${fName}","${lName}")`, function (err, result) {
+      con.query(`INSERT INTO users (EMAIL, PASSWORD, FirstName, LastName) VALUES("${username}","${hash}","${fName}","${lName}")`, function (err, result) {
         if (err) {
           return console.error("Error: " + err.message);
         }
@@ -162,7 +162,7 @@ express()
     var password = req.body.password;
     var hashedpass = null;
 
-    con.query(`SELECT * FROM USERS WHERE EMAIL = "${username}"`, function (err, res) {
+    con.query(`SELECT * FROM users WHERE EMAIL = "${username}"`, function (err, res) {
       if (err) {
         return console.error("Error: " + err.message);
       }

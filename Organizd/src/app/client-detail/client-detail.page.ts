@@ -21,13 +21,14 @@ export class ClientDetailPage implements OnInit {
 
   ngOnInit() {
     //this.state = this.activatedRoute.paramMap.pipe(map(() => window.history.state));
-    this.state = this.router.getCurrentNavigation().extras.state;
+    //this.state = this.router.getCurrentNavigation().extras.state;
+    this.state = history.state;
     this.selected = this.state.process;
   }
 
   optionChanged(selectedValue: any){
     this.selected = selectedValue.detail.value;
-    this.clientService.updateStatus(this.state.ClientID, this.selected)
+    this.clientService.updateStatus(history.state.ClientID, this.selected)
           .pipe(first())
           .subscribe(
             resData => {

@@ -94,7 +94,7 @@ export class ClientListPage implements OnInit {
   private showAlert(message: string) {
     this.alertCtrl
       .create({
-        header: 'Submitting Trip failed',
+        header: 'Retreving Client List failed',
         message,
         buttons: ['Okay']
       })
